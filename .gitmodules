@@ -1,3 +1,6 @@
 [submodule "neorv32"]
 	path = neorv32
 	url = https://github.com/stnolting/neorv32.git
+[submodule "riscv-formal"]
+	path = riscv-formal
+	url = https://github.com/YosysHQ/riscv-formal.git
