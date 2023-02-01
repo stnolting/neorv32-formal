@@ -1,0 +1,36 @@
+# Test NEORV32 processor with formal verification
+
+name: Processor
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - 'core/**'
+  pull_request:
+    branches:
+    - main
+    paths:
+    - 'core/**'
+  workflow_dispatch:
+
+jobs:
+
+
+  Core-Container:
+    runs-on: ubuntu-latest
+
+    name: '🛳️ Container | Core'
+
+    steps:
+
+    - name: '🧰 Repository Checkout'
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: '🚧 Run Processor Core Hardware Formal Tests with GHDL and SymbiYosys'
+      uses: docker://ghcr.io/hdl/amd64/formal/all
+      with:
+        args: ./core/test.sh prove
